@@ -61,7 +61,7 @@ function atm() {
             atm();
             break;
 
-        case 3: // Withdraw function not made yet
+        case 3:
             account.withdraw();
             atm();
             break;
