@@ -8,7 +8,7 @@ const account = {
 
     deposit: function() {
         let amount = parseFloat(prompt("Enter deposit amount"));
-        if (isNan(amount)) {
+        if (isNaN(amount)) {
             this.accountError ("You need to inser a number");
         }
         else {
@@ -20,10 +20,32 @@ const account = {
                 alert (amount + "kr has been deposited")
             }
         }
-    }
+    },
 
-    
+    withdraw: function() {
+        let amount = parseFloat(prompt("Enter withdraw amount"));
+        if (isNaN(amount)) {
+            this.accountError("You need to insert a number.");
+        } else if (amount <= 0) {
+            this.accountError("Amount needs to be higher than 0.");
+        } else if (amount > this.balance) {
+            this.accountError("You don't have enough money.");
+        } else {
+            this.balance -= amount;
+            alert("Withdrawal completed!");
+        }
+    },
+
+    getAccountName: function() {
+        alert("Account holder: " + this.accountName);
+    },
+
+    accountError: function(msg) {
+        alert("An error occurred: " + msg);
+    }
 }
+
+
 
 function atm() {
     const message = parseFloat (prompt("Choose an option: \n1. Check balance \n2. Deposit \n3. Withdraw \n4. Show account name \n5. Exit"));
@@ -40,6 +62,9 @@ function atm() {
             break;
 
         case 3: // Withdraw function not made yet
+            account.withdraw();
+            atm();
+            break;
         
         case 4:
             account.getAccountName();
